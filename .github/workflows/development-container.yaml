@@ -156,7 +156,7 @@ jobs:
       - name: Set Outputs
         if: always()
         run: |
-          DIGESTS_JSON='${{ steps.build.output.imageDigests }}'
+          DIGESTS_JSON='${{ steps.build.outputs.imageDigests }}'
           PLATFORM="${{ matrix.architecture.arch }}"
           DIGEST=$(echo $DIGESTS_JSON | jq -r --arg platform "$PLATFORM" '.[$platform]')
           echo "IMAGE_DIGEST_${PLATFORM//\//_}=${DIGEST}" >> $GITHUB_OUTPUT
