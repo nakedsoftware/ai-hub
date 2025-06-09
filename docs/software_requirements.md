@@ -9,7 +9,7 @@ Before attempting to work with the AI Hub source code, you should make sure that
 AI Hub supports Apple macOS, Linux, and Microsoft Windows as development environments for building, running, and developing new feature for AI Hub. Not all required software is required on all operating systems. Each software package indicates which operating system it is required on using the following icons:
 
 - :white_check_mark:: The software package is required on this operating system
-- :gray_question:: The software package is optional on this operating system
+- :grey_question:: The software package is optional on this operating system
 - :x:: The software package is not required on this operating system
 
 ## Homebrew
@@ -45,6 +45,10 @@ winget install --id Git.Git -e --source winget
 ```
 
 ## GitHub CLI
+
+- :white_check_mark: Apple macOS
+- :white_check_mark: Linux
+- :white_check_mark: Microsoft Windows
 
 [GitHub CLI](https://cli.github.com) is a command line interface for GitHub. GitHub CLI can be used to automate tasks for managing repositories or project, or can be used to start GitHub Actions workflows.
 
