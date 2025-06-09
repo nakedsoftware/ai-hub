@@ -157,7 +157,6 @@ jobs:
           push: filter
           refFilterForPush: refs/heads/main
           eventFilterForPush: push
-          cacheFrom: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
           platform: ${{ matrix.architecture.arch }}
       - name: Set Outputs
         if: always()
