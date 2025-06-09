@@ -116,14 +116,16 @@ permissions:
 
 jobs:
   prebuild:
-    name: Prebuild Development Container for ${{ matrix.architecture.arch }}
+    name: Prebuild Development Container for ${{ matrix.architecture.platform }}
     runs-on: ${{ matrix.architecture.runner }}
     strategy:
       matrix:
         architecture:
-          - arch: linux/amd64
+          - arch: amd64
+            platform: linux/amd64
             runner: ubuntu-24.04
-          - arch: linux/arm64
+          - arch: arm64
+            platform: linux/arm64
             runner: ubuntu-24.04-arm
       fail-fast: false
     outputs:
@@ -155,16 +157,17 @@ jobs:
         uses: ./.github/actions/devcontainer-ci
         with:
           imageName: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
+          imageTag: latest-${{ matrix.architecture.arch }}
           subFolder: .github
           push: filter
           refFilterForPush: refs/heads/main
           eventFilterForPush: push
-          platform: ${{ matrix.architecture.arch }}
+          platform: ${{ matrix.architecture.platform }}
       - name: Set Outputs
         if: always()
         run: |
           DIGESTS_JSON='${{ steps.build.outputs.imageDigests }}'
-          PLATFORM="${{ matrix.architecture.arch }}"
+          PLATFORM="${{ matrix.architecture.platform }}"
           DIGEST=$(echo $DIGESTS_JSON | jq -r --arg platform "$PLATFORM" '.[$platform]')
           echo "IMAGE_DIGEST_${PLATFORM//\//_}=${DIGEST}" >> $GITHUB_OUTPUT
 
