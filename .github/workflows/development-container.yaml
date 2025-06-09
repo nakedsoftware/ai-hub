@@ -144,7 +144,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Development Container
         id: build
-        uses: jasondamour/devcontainer-ci@multiarch
+        uses: ./.github/actions/devcontainer-ci
         with:
           imageName: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
           subFolder: .github
