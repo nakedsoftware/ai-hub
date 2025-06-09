@@ -54,7 +54,9 @@ winget install --id Git.Git -e --source winget
 
 - __Apple macOS and Linux__: GitHub CLI can be installed using [Homebrew](#homebrew). To install GitHub CLI, open a terminal and run:
 
+```shell
 brew install gh
+```
 
 - __Microsoft Windows__: GitHub CLI can be installed using [WinGet](https://learn.microsoft.com/en-us/windows/package-manager/winget/). In a Command Prompt or PowerShell window, run:
 
