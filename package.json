@@ -1,0 +1,61 @@
+{
+  "name": "@nakedsoftware/ai-hub",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "AI Hub is an integration platform for building AI-capable autonomous agents and integrating agents with business systems and other AI tools",
+  "keywords": [
+    "a2a",
+    "ai",
+    "artificial",
+    "grpc",
+    "http",
+    "integration",
+    "intelligence",
+    "mcp",
+    "messaging",
+    "service"
+  ],
+  "homepage": "https://github.com/nakdsoftware/ai-hub",
+  "bugs": {
+    "email": "support@naked.software",
+    "url": "https://github.com/nakedsoftware/ai-hub/issues"
+  },
+  "license": "UNLICENSED",
+  "contributors": [
+    {
+      "name": "Michael Collins",
+      "email": "michael.collins@naked.software",
+      "url": "https://michaelfcollins3.dev"
+    }
+  ],
+  "repository": "github:nakedsoftware/ai-hub",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/cz-commitlint": "^19.8.1",
+    "commitizen": "^4.3.1",
+    "husky": "^9.1.7"
+  },
+  "engines": {
+    "node": "22.16.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "onFail": "warn"
+    },
+    "runtime": {
+      "name": "node",
+      "onFail": "warn"
+    }
+  },
+  "private": true,
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@commitlint/cz-commitlint"
+    }
+  }
+}
