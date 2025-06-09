@@ -94,11 +94,13 @@ on:
       - main
     paths:
       - .github/.devcontainer/**
+      - .github/workflows/development-container.yaml
   pull_request:
     branches:
       - main
     paths:
       - .github/.devcontainer/**
+      - .github/workflows/development-container.yaml
   workflow_dispatch:
 
 env:
