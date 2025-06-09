@@ -142,11 +142,18 @@ jobs:
           registry: ${{ env.CONTAINER_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract Docker Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
+          sep-tags: ','
       - name: Build Development Container
         id: build
         uses: ./.github/actions/devcontainer-ci
         with:
           imageName: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
+          imageTag: ${{ steps.meta.outputs.tags }}
           subFolder: .github
           push: filter
           refFilterForPush: refs/heads/main
@@ -176,11 +183,23 @@ jobs:
           registry: ${{ env.CONTAINER_REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract Docker Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
+          tags: |
+            type=match,pattern=devcontainer\/v(\d+\.\d+\.\d+),group=1
+            type=match,pattern=devcontainer\/v(\d+\.\d+),group=1
+            type=match,pattern=devcontainer\/v([1-9][0-9]+),group=1
+            type=ref,event=branch
+            type=ref,event=pr
       - name: Push Manifest List
         run: |
           IMAGE=${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
           docker buildx imagetools create \
             -t ${IMAGE}:latest \
+            $(jq -cr '.tags | map("-t " + .) | join(" ")' <<< "$DOCKER_METADATA_OUTPUT_JSON") \
             ${IMAGE}@${{ needs.prebuild.outputs.IMAGE_DIGEST_linux_amd64 }} \
             ${IMAGE}@${{ needs.prebuild.outputs.IMAGE_DIGEST_linux_arm64 }}
       - name: Inspect Manifest
