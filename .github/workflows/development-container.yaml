@@ -153,7 +153,6 @@ jobs:
         uses: ./.github/actions/devcontainer-ci
         with:
           imageName: ${{ env.CONTAINER_REGISTRY }}/${{ env.CONTAINER_IMAGE_NAME }}
-          imageTag: ${{ steps.meta.outputs.tags }}
           subFolder: .github
           push: filter
           refFilterForPush: refs/heads/main
