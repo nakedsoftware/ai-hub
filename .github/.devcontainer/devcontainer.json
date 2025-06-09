@@ -1,0 +1,10 @@
+{
+    "name": "ai-hub",
+    "image": "mcr.microsoft.com/devcontainers/base:2.0.1-noble",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22.16.0"
+        }
+    }
+}
